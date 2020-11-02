@@ -8,7 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-class Ui_Dialog(object):
+class _Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Редактор записей")
         Dialog.resize(422, 376)
@@ -103,13 +103,14 @@ class Ui_Dialog(object):
         self.label_12.setText(_translate("Dialog", "->"))
         self.pushButton_6.setText(_translate("Dialog", "Удалить запись по ID"))
 
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    Dialog = QtWidgets.QDialog()
-    ui = Ui_Dialog()
-    ui.setupUi(Dialog)
-    Dialog.show()
-    sys.exit(app.exec_())
-
+class ui_dialog_window(QtWidgets.QMainWindow, _Ui_Dialog):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setup_buttons()
+        
+    def hi(self):
+        print('hi!')
+        
+    def setup_buttons(self):
+        self.b1.clicked.connect(lambda: self.hi())

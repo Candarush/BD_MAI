@@ -7,13 +7,13 @@
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from test_1 import Ui_Dialog
+from test_1 import ui_dialog_window
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("Телефонный справочник")
-        MainWindow.resize(734, 345)
-        self.centralwidget = QtWidgets.QWidget(MainWindow)
+class _Ui_MainDialog(object):
+    def setupUi(self, _Ui_MainDialog):
+        _Ui_MainDialog.setObjectName("Телефонный справочник")
+        _Ui_MainDialog.resize(734, 345)
+        self.centralwidget = QtWidgets.QWidget(_Ui_MainDialog)
         self.centralwidget.setObjectName("centralwidget")
         self.textEdit_5 = QtWidgets.QTextEdit(self.centralwidget)
         self.textEdit_5.setGeometry(QtCore.QRect(86, 88, 71, 31))
@@ -98,63 +98,55 @@ class Ui_MainWindow(object):
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(20, 270, 75, 20))
         self.pushButton_2.setObjectName("pushButton_2")
-        MainWindow.setCentralWidget(self.centralwidget)
-        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        _Ui_MainDialog.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(_Ui_MainDialog)
         self.statusbar.setObjectName("statusbar")
-        MainWindow.setStatusBar(self.statusbar)
+        _Ui_MainDialog.setStatusBar(self.statusbar)
+        
+        self.retranslateUi(_Ui_MainDialog)
+        QtCore.QMetaObject.connectSlotsByName(_Ui_MainDialog)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-    def retranslateUi(self, MainWindow):
+    def retranslateUi(self, _Ui_MainDialog):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_6.setText(_translate("MainWindow", "  Корпус"))
-        self.label_4.setText(_translate("MainWindow", "Улица"))
-        self.label_8.setText(_translate("MainWindow", " Телефон"))
-        self.label.setText(_translate("MainWindow", " Фамилия"))
-        self.label_7.setText(_translate("MainWindow", "Квартира"))
-        self.label_5.setText(_translate("MainWindow", " Дом"))
-        self.label_3.setText(_translate("MainWindow", "Отчество"))
-        self.label_2.setText(_translate("MainWindow", " Имя"))
-        self.pushButton.setText(_translate("MainWindow", "Добавить"))
+        _Ui_MainDialog.setWindowTitle(_translate("_Ui_MainDialog", "_Ui_MainDialog"))
+        self.label_6.setText(_translate("_Ui_MainDialog", "  Корпус"))
+        self.label_4.setText(_translate("_Ui_MainDialog", "Улица"))
+        self.label_8.setText(_translate("_Ui_MainDialog", " Телефон"))
+        self.label.setText(_translate("_Ui_MainDialog", " Фамилия"))
+        self.label_7.setText(_translate("_Ui_MainDialog", "Квартира"))
+        self.label_5.setText(_translate("_Ui_MainDialog", " Дом"))
+        self.label_3.setText(_translate("_Ui_MainDialog", "Отчество"))
+        self.label_2.setText(_translate("_Ui_MainDialog", " Имя"))
+        self.pushButton.setText(_translate("_Ui_MainDialog", "Добавить"))
         item = self.tableWidget.horizontalHeaderItem(0)
-        item.setText(_translate("MainWindow", "Номер"))
+        item.setText(_translate("_Ui_MainDialog", "Номер"))
         item = self.tableWidget.horizontalHeaderItem(1)
-        item.setText(_translate("MainWindow", "Фамилия"))
+        item.setText(_translate("_Ui_MainDialog", "Фамилия"))
         item = self.tableWidget.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "Имя"))
+        item.setText(_translate("_Ui_MainDialog", "Имя"))
         item = self.tableWidget.horizontalHeaderItem(3)
-        item.setText(_translate("MainWindow", "Отчество"))
+        item.setText(_translate("_Ui_MainDialog", "Отчество"))
         item = self.tableWidget.horizontalHeaderItem(4)
-        item.setText(_translate("MainWindow", "Улица"))
+        item.setText(_translate("_Ui_MainDialog", "Улица"))
         item = self.tableWidget.horizontalHeaderItem(5)
-        item.setText(_translate("MainWindow", "Дом"))
+        item.setText(_translate("_Ui_MainDialog", "Дом"))
         item = self.tableWidget.horizontalHeaderItem(6)
-        item.setText(_translate("MainWindow", "Корпус"))
+        item.setText(_translate("_Ui_MainDialog", "Корпус"))
         item = self.tableWidget.horizontalHeaderItem(7)
-        item.setText(_translate("MainWindow", "Квартира"))
+        item.setText(_translate("_Ui_MainDialog", "Квартира"))
         item = self.tableWidget.horizontalHeaderItem(8)
-        item.setText(_translate("MainWindow", "Телефон"))
-        self.pushButton_4.setText(_translate("MainWindow", "Изменить"))
-        self.pushButton_3.setText(_translate("MainWindow", "Просмотр БД"))
-        self.pushButton_2.setText(_translate("MainWindow", "Печать"))
+        item.setText(_translate("_Ui_MainDialog", "Телефон"))
+        self.pushButton_4.setText(_translate("_Ui_MainDialog", "Изменить"))
+        self.pushButton_3.setText(_translate("_Ui_MainDialog", "Просмотр БД"))
+        self.pushButton_2.setText(_translate("_Ui_MainDialog", "Печать"))
         self.w = None  # No external window yet.
         self.pushButton_4.clicked.connect(self.show_new_window)
+
     def show_new_window(self):
-        self.window = QtWidgets.QDialog()
-        self.ui = Ui_Dialog()
-        self.ui.setupUi (self.window)
-        self.window.show()
+        self.ui = ui_dialog_window()
+        self.ui.show()
         
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
-
+class ui_main_window(QtWidgets.QMainWindow, _Ui_MainDialog):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
